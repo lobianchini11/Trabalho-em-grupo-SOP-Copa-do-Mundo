@@ -23,4 +23,4 @@ Este projeto foi desenvolvido para aprender Git e GitHub através da criação d
 
 ## Como acessar:
 
-Link do site: 
+Link do site: https://brunafurlaneto.github.io/Trabalho-em-grupo-SOP-Copa-do-Mundo/paginas/paginaPrincipal.html
