@@ -1,75 +1,446 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>A Copa como Fenômeno Cultural</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fenômeno Cultural — A Copa do Mundo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --green:      #0A3D2B;
+            --green-mid:  #1A6644;
+            --gold:       #D4A843;
+            --off-white:  #F8F5EE;
+            --ink:        #1A1A2E;
+            --ink-light:  #4A4A6A;
+            --card-bg:    #ffffff;
+            --border:     #e0ddd6;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--off-white);
+            color: var(--ink);
+            line-height: 1.7;
+        }
+
+        .topbar {
+            background: var(--green);
+            padding: 0.75rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .topbar-back {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: color 0.2s;
+        }
+
+        .topbar-back:hover { color: #fff; }
+
+        .topbar-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .page-hero {
+            background: var(--green);
+            padding: 3.5rem 2rem 4rem;
+            text-align: center;
+            border-bottom: 3px solid var(--gold);
+        }
+
+        .page-num {
+            display: inline-block;
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--gold);
+            border: 1px solid rgba(212,168,67,0.4);
+            padding: 0.35rem 1rem;
+            border-radius: 100px;
+            margin-bottom: 1.5rem;
+        }
+
+        .page-hero h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.8rem, 8vw, 6rem);
+            line-height: 0.95;
+            color: #fff;
+            letter-spacing: 0.05em;
+        }
+
+        .page-hero h1 span { color: var(--gold); display: block; }
+
+        .page-hero-sub {
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.6);
+            font-weight: 300;
+        }
+
+        .page-author {
+            display: inline-block;
+            margin-top: 1.5rem;
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.5);
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: 0.3rem 1rem;
+            border-radius: 4px;
+            letter-spacing: 0.04em;
+        }
+
+        .page-nav {
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .page-nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .page-nav a {
+            display: block;
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            color: var(--ink-light);
+            text-decoration: none;
+            padding: 1rem 1rem;
+            border-bottom: 2px solid transparent;
+            transition: color 0.2s, border-color 0.2s;
+            white-space: nowrap;
+        }
+
+        .page-nav a:hover {
+            color: var(--green-mid);
+            border-bottom-color: var(--gold);
+        }
+
+        .section {
+            padding: 5rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section + .section {
+            border-top: 1px solid var(--border);
+        }
+
+        .section-label {
+            display: block;
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--green-mid);
+            margin-bottom: 0.75rem;
+        }
+
+        .section h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            letter-spacing: 0.06em;
+            color: var(--ink);
+            margin-bottom: 1.25rem;
+        }
+
+        .section p {
+            font-size: 0.98rem;
+            color: var(--ink-light);
+            margin-bottom: 1rem;
+        }
+
+        .section-img {
+            width: 100%;
+            max-width: 800px;
+            border-radius: 10px;
+            display: block;
+            margin: 2rem 0;
+            box-shadow: 0 6px 24px rgba(10,61,43,0.12);
+        }
+
+        /* Estilização para o Grid de Tradições */
+        .culture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .culture-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-top: 3px solid var(--gold);
+            border-radius: 10px;
+            padding: 1.75rem;
+        }
+
+        .culture-icon {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .culture-card h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.6rem;
+            color: var(--ink);
+            letter-spacing: 0.04em;
+            line-height: 1.1;
+            margin-bottom: 0.75rem;
+        }
+
+        .culture-card p {
+            font-size: 0.88rem;
+            color: var(--ink-light);
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* Stats para Evolução Midiática */
+        .media-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+
+        .media-stat-item {
+            flex: 1;
+            min-width: 150px;
+            border-left: 3px solid var(--gold);
+            padding-left: 1rem;
+        }
+
+        .media-stat-item strong {
+            display: block;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.2rem;
+            color: var(--green-mid);
+            line-height: 1;
+        }
+
+        .media-stat-item span {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 500;
+        }
+
+        /* Dark Section */
+        .dark-section {
+            background: var(--green);
+            padding: 5rem 2rem;
+        }
+
+        .dark-section .container { max-width: 860px; margin: 0 auto; }
+
+        .dark-section .section-label { color: var(--gold); }
+
+        .dark-section h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            letter-spacing: 0.06em;
+            color: #fff;
+            margin-bottom: 1.25rem;
+        }
+
+        .dark-section p {
+            font-size: 0.98rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        footer {
+            background: var(--ink);
+            color: rgba(255,255,255,0.4);
+            text-align: center;
+            padding: 2.5rem 2rem;
+            font-size: 0.78rem;
+            letter-spacing: 0.04em;
+        }
+
+        footer strong { color: rgba(255,255,255,0.7); }
+
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.25rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-nav a {
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            transition: color 0.2s;
+        }
+
+        .footer-nav a:hover { color: var(--gold); }
+
+        @media (max-width: 640px) {
+            .culture-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
 
-    <header>
-        <h1>A Copa do Mundo: Um Fenômeno Cultural Global</h1>
-        <hr>
+    <div class="topbar">
+        <a href="paginaPrincipal.html" class="topbar-back">← Voltar à página inicial</a>
+        <span class="topbar-label">Tópico 05 de 05</span>
+    </div>
+
+    <header class="page-hero">
+        <span class="page-num">Tópico 05 · Copa do Mundo</span>
+        <h1>Fenômeno Cultural<span>Global</span></h1>
+        <p class="page-hero-sub">Músicas, mascotes e identidade: como a Copa molda a cultura popular</p>
+        <span class="page-author">Por Lorenzo Bianchini de Andrade</span>
     </header>
 
-    <nav>
+    <nav class="page-nav">
         <ul>
             <li><a href="#identidade">Identidade e Nacionalismo</a></li>
-            <li><a href="#midia">A Evolução da Cobertura Midiática</a></li>
+            <li><a href="#midia">Evolução Midiática</a></li>
             <li><a href="#tradicoes">Tradições das Torcidas</a></li>
-            <li><a href="#diplomacia">O Futebol como Diplomacia</a></li>
+            <li><a href="#diplomacia">Futebol e Diplomacia</a></li>
         </ul>
     </nav>
 
-    <br>
-
-    <main>
-        <section id="identidade">
-            <h2>Identidade e Nacionalismo</h2>
-            <p>A Copa do Mundo transcende o âmbito estritamente esportivo ao atuar como um poderoso catalisador de identidade e nacionalismo. Durante o torneio, as fronteiras geográficas tornam-se, simbolicamente, campos de batalha onde a bandeira, o hino e as cores de uma seleção deixam de ser apenas símbolos estatais para se converterem em extensões da própria identidade dos cidadãos. Esse fenômeno cria um sentimento de unidade nacional capaz de suspender temporariamente divisões sociais e políticas internas, unificando a população sob um propósito comum: o orgulho de pertencer. Nesse contexto, o futebol funciona como um espelho da sociedade, onde cada vitória é celebrada como uma conquista coletiva da cultura e da capacidade do país perante o mundo, reforçando o patriotismo e o senso de pertencimento a uma comunidade imaginada que se manifesta intensamente a cada ciclo de quatro anos.</p>
+    <section class="section" id="identidade">
+        <span class="section-label">Capítulo 1</span>
+        <h2>Identidade e Nacionalismo</h2>
+        <p>A Copa do Mundo transcende o âmbito estritamente esportivo ao atuar como um poderoso catalisador de identidade e nacionalismo. Durante o torneio, as fronteiras geográficas tornam-se, simbolicamente, campos de batalha onde a bandeira, o hino e as cores de uma seleção deixam de ser apenas símbolos estatais para se converterem em extensões da própria identidade dos cidadãos.</p>
         
-            <img src="https://s2-g1.glbimg.com/xGfM6lvGu4l61DKCVeETcy2tbJ8=/0x0:1600x739/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2022/I/6/a7xCekRlSxzndvE6vODQ/whatsapp-image-2022-11-19-at-21.04.22-3-.jpeg" width="550" alt="Rua enfeitada">
-        </section>
+        <p>Esse fenômeno cria um sentimento de unidade nacional capaz de suspender temporariamente divisões sociais e políticas internas, unificando a população sob um propósito comum: o orgulho de pertencer. Nesse contexto, o futebol funciona como um espelho da sociedade, onde cada vitória é celebrada como uma conquista coletiva da cultura e da capacidade do país perante o mundo, reforçando o patriotismo e o senso de pertencimento a uma comunidade imaginada que se manifesta intensamente a cada ciclo de quatro anos.</p>
 
-        <br>
+        <p>No Brasil, por exemplo, é comum vermos ruas inteiras sendo pintadas de verde e amarelo, um ritual coletivo que envolve vizinhos de todas as gerações. É o momento em que a rotina do país literalmente para — escolas, comércio e indústrias ajustam seus horários para que todos possam assistir aos jogos, provando que a Copa dita o ritmo da vida social.</p>
+        
+        <img class="section-img" src="https://s2-g1.glbimg.com/xGfM6lvGu4l61DKCVeETcy2tbJ8=/0x0:1600x739/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2022/I/6/a7xCekRlSxzndvE6vODQ/whatsapp-image-2022-11-19-at-21.04.22-3-.jpeg" alt="Rua enfeitada para a Copa">
+    </section>
 
-        <section id="midia">
-            <h2>A Evolução da Cobertura Midiática</h2>
-            <p>A trajetória da cobertura midiática da Copa do Mundo reflete a própria evolução tecnológica da humanidade: o que começou com narrações radiofônicas, que exigiam dos ouvintes um exercício profundo de imaginação, transformou-se em uma experiência imersiva e multicanal. A transição da transmissão em preto e branco para a alta definição, e agora para o streaming em tempo real com estatísticas avançadas, alterou drasticamente a forma como o público se conecta com o evento. Hoje, o espectador não apenas assiste, mas participa ativamente através das redes sociais, criando uma narrativa global compartilhada. Essa transformação tecnológica descentralizou o papel da imprensa tradicional, tornando o fenômeno da Copa um ecossistema digital onde o torcedor é, simultaneamente, audiência e produtor de conteúdo, garantindo que o impacto cultural do torneio alcance cada vez mais indivíduos, independentemente de onde estejam.</p>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQE5KdyKKTp-Gpm2ZBgkpnMZ2kENFIdiM0uhBgBr77YloaKs8qxvd8zDs&s=10" width="550">
-        </section>
+    <section class="section" id="midia">
+        <span class="section-label">Capítulo 2</span>
+        <h2>A Evolução da Cobertura Midiática</h2>
+        <p>A trajetória da cobertura midiática da Copa do Mundo reflete a própria evolução tecnológica da humanidade: o que começou com narrações radiofônicas, que exigiam dos ouvintes um exercício profundo de imaginação, transformou-se em uma experiência imersiva e multicanal.</p>
+        
+        <p>A transição da transmissão em preto e branco para a alta definição, e agora para o streaming em tempo real com estatísticas avançadas, alterou drasticamente a forma como o público se conecta com o evento. Hoje, o espectador não apenas assiste, mas participa ativamente através das redes sociais, criando uma narrativa global compartilhada.</p>
+        
+        <p>Essa transformação tecnológica descentralizou o papel da imprensa tradicional, tornando o fenômeno da Copa um ecossistema digital onde o torcedor é, simultaneamente, audiência e produtor de conteúdo, garantindo que o impacto cultural do torneio alcance cada vez mais indivíduos, independentemente de onde estejam.</p>
 
-        <br>
+        <div class="media-stats">
+            <div class="media-stat-item">
+                <strong>1930</strong>
+                <span>Rádio: Apenas relatos em áudio na primeira Copa.</span>
+            </div>
+            <div class="media-stat-item">
+                <strong>1954</strong>
+                <span>TV: Primeira transmissão televisiva ao vivo (Europa).</span>
+            </div>
+            <div class="media-stat-item">
+                <strong>1970</strong>
+                <span>Cores: Mundo assiste ao Brasil tricampeão a cores.</span>
+            </div>
+            <div class="media-stat-item">
+                <strong>2022+</strong>
+                <span>Streaming: Bilhões acompanham via plataformas digitais e mobile.</span>
+            </div>
+        </div>
 
-        <section id="tradicoes">
-            <h2>Tradições das Torcidas</h2>
-            <p>As tradições das torcidas representam a alma da Copa do Mundo, manifestando-se como uma forma vibrante de expressão cultural que mistura folclore, música e rituais coletivos. Mais do que simples espectadores, os torcedores utilizam cânticos personalizados, coreografias complexas conhecidas como mosaicos, e trajes típicos para transformar o espaço urbano e esportivo em um reflexo da identidade de sua nação. Essas manifestações não apenas celebram o jogo, mas também funcionam como um mecanismo de coesão social, onde o aprendizado de hinos e ritos de passagem de uma geração para outra mantém vivas as memórias históricas de cada país. Assim, as arquibancadas tornam-se laboratórios antropológicos de cores e sons, onde a diversidade cultural é exibida com orgulho, provando que a paixão pelo futebol é um idioma universal capaz de derrubar barreiras linguísticas e aproximar desconhecidos através de uma celebração compartilhada.</p>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrE1l0BcilBVmZPvKqMEK0LY2zBD76zRNxMRnR5UwcAa_iOmZRccWsm8M&s=10" width="550">
-        </section>
+        <img class="section-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQE5KdyKKTp-Gpm2ZBgkpnMZ2kENFIdiM0uhBgBr77YloaKs8qxvd8zDs&s=10" alt="Evolução da mídia na Copa">
+    </section>
 
-        <br>
+    <section class="section" id="tradicoes">
+        <span class="section-label">Capítulo 3</span>
+        <h2>Tradições das Torcidas</h2>
+        <p>As tradições das torcidas representam a alma da Copa do Mundo, manifestando-se como uma forma vibrante de expressão cultural que mistura folclore, música e rituais coletivos. Mais do que simples espectadores, os torcedores utilizam cânticos personalizados, coreografias complexas conhecidas como mosaicos, e trajes típicos para transformar o espaço urbano e esportivo em um reflexo da identidade de sua nação.</p>
+        
+        <p>Essas manifestações não apenas celebram o jogo, mas também funcionam como um mecanismo de coesão social, onde o aprendizado de hinos e ritos de passagem de uma geração para outra mantém vivas as memórias históricas de cada país. Assim, as arquibancadas tornam-se laboratórios antropológicos de cores e sons, onde a diversidade cultural é exibida com orgulho, provando que a paixão pelo futebol é um idioma universal capaz de derrubar barreiras linguísticas e aproximar desconhecidos através de uma celebração compartilhada.</p>
 
-        <section id="diplomacia">
+        <div class="culture-grid">
+            <div class="culture-card">
+                <span class="culture-icon">🎺</span>
+                <h3>As Vuvuzelas (2010)</h3>
+                <p>Na África do Sul, o som ensurdecedor das vuvuzelas marcou a identidade do torneio. Mesmo dividindo opiniões mundiais, tornaram-se o grande símbolo cultural da primeira Copa em solo africano.</p>
+            </div>
+            <div class="culture-card">
+                <span class="culture-icon">🧹</span>
+                <h3>A Disciplina Japonesa</h3>
+                <p>A torcida do Japão ganhou o respeito global pela tradição de limpar completamente as arquibancadas após os jogos, independentemente do resultado de sua seleção em campo, refletindo seus valores culturais.</p>
+            </div>
+            <div class="culture-card">
+                <span class="culture-icon">👏</span>
+                <h3>O Viking Clap (2018)</h3>
+                <p>A Islândia impressionou o mundo com a sua coreografia rítmica de palmas sincronizadas com um tambor. Um canto de guerra arrepiante que demonstrou a força de uma das menores nações a disputar o mundial.</p>
+            </div>
+        </div>
+
+        <img class="section-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrE1l0BcilBVmZPvKqMEK0LY2zBD76zRNxMRnR5UwcAa_iOmZRccWsm8M&s=10" alt="Tradições e Torcidas na Copa">
+    </section>
+
+    <section class="dark-section" id="diplomacia">
+        <div class="container">
+            <span class="section-label">Capítulo 4</span>
             <h2>O Futebol como Diplomacia</h2>
-            <p>A Copa do Mundo atua como um complexo instrumento de diplomacia, transcendendo a esfera esportiva para se tornar um espaço de diálogo e visibilidade entre nações. Em diversos momentos históricos, o torneio permitiu que países com relações diplomáticas tensas encontrassem no gramado um terreno neutro para o intercâmbio cultural e a construção de pontes simbólicas. O futebol funciona aqui como um 'soft power', onde a hospitalidade de um país-sede e o comportamento de suas seleções moldam a imagem global do Estado perante a comunidade internacional. Ao reunir governantes, delegações e milhões de cidadãos sob as mesmas regras e normas da FIFA, a Copa impõe um cenário de cooperação obrigatória, demonstrando que, apesar das divergências políticas ou ideológicas, existe um espaço comum de respeito e reconhecimento mútuo que pode ser o primeiro passo para o entendimento diplomático em escalas muito maiores.</p>
-            <img src="https://a.espncdn.com/photo/2022/1216/r1107199_1296x729_16-9.jpg" width="550">
-        </section>
-    </main>
-    <br>
+            <p>A Copa do Mundo atua como um complexo instrumento de diplomacia, transcendendo a esfera esportiva para se tornar um espaço de diálogo e visibilidade entre nações. Em diversos momentos históricos, o torneio permitiu que países com relações diplomáticas tensas encontrassem no gramado um terreno neutro para o intercâmbio cultural e a construção de pontes simbólicas.</p>
+            
+            <p>O futebol funciona aqui como um 'soft power', onde a hospitalidade de um país-sede e o comportamento de suas seleções moldam a imagem global do Estado perante a comunidade internacional. Ao reunir governantes, delegações e milhões de cidadãos sob as mesmas regras e normas da FIFA, a Copa impõe um cenário de cooperação obrigatória.</p>
+
+            <p>Este ambiente demonstra que, apesar das divergências políticas ou ideológicas, existe um espaço comum de respeito e reconhecimento mútuo que pode ser o primeiro passo para o entendimento diplomático em escalas muito maiores. A Copa cria uma espécie de "trégua" contemporânea, forçando líderes globais a sentarem nas mesmas tribunas e assistirem a uma linguagem universal rolar pelos gramados.</p>
+
+            <img class="section-img" style="margin-top: 2.5rem; max-width: 100%; box-shadow: none;" src="https://a.espncdn.com/photo/2022/1216/r1107199_1296x729_16-9.jpg" alt="Diplomacia e Futebol">
+        </div>
+    </section>
 
     <footer>
-        Feito por: Lorenzo Bianchini de Andrade
+        <nav class="footer-nav">
+            <a href="paginaPrincipal.html">← Início</a>
+            <a href="leticia.html">01 · Origem e História</a>
+            <a href="murilo.html">02 · Ícones e Legados</a>
+            <a href="Guilherme.html">03 · Impactos Socioeconômicos</a>
+            <a href="bruna.html">04 · Tecnologia</a>
+        </nav>
+        <p>
+            <strong>A Copa como Fenômeno Cultural Global</strong>
+            &nbsp;—&nbsp; Por Lorenzo Bianchini de Andrade · Instituto J&amp;F · Sala 1°E · 2026
+        </p>
     </footer>
 
-    <h2>Página Inicial: </h2>
-     <nav>
-        <ul>
-           
-            <li><a href="paginaPrincipal.html"> Início</a></li>
-           
-            
-           
-        
-        </ul>
-    </nav>
 </body>
 </html>

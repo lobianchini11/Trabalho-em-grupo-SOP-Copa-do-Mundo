@@ -1,128 +1,490 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Origem, História e Evolução</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Origem, História e Evolução — A Copa do Mundo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --green:      #0A3D2B;
+            --green-mid:  #1A6644;
+            --gold:       #D4A843;
+            --off-white:  #F8F5EE;
+            --ink:        #1A1A2E;
+            --ink-light:  #4A4A6A;
+            --card-bg:    #ffffff;
+            --border:     #e0ddd6;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--off-white);
+            color: var(--ink);
+            line-height: 1.7;
+        }
+
+        .topbar {
+            background: var(--green);
+            padding: 0.75rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .topbar-back {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: color 0.2s;
+        }
+
+        .topbar-back:hover { color: #fff; }
+
+        .topbar-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .page-hero {
+            background: var(--green);
+            padding: 3.5rem 2rem 4rem;
+            text-align: center;
+            border-bottom: 3px solid var(--gold);
+        }
+
+        .page-num {
+            display: inline-block;
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--gold);
+            border: 1px solid rgba(212,168,67,0.4);
+            padding: 0.35rem 1rem;
+            border-radius: 100px;
+            margin-bottom: 1.5rem;
+        }
+
+        .page-hero h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.8rem, 8vw, 6rem);
+            line-height: 0.95;
+            color: #fff;
+            letter-spacing: 0.05em;
+        }
+
+        .page-hero h1 span { color: var(--gold); display: block; }
+
+        .page-hero-sub {
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.6);
+            font-weight: 300;
+        }
+
+        .page-author {
+            display: inline-block;
+            margin-top: 1.5rem;
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.5);
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: 0.3rem 1rem;
+            border-radius: 4px;
+            letter-spacing: 0.04em;
+        }
+
+        .page-nav {
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .page-nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            justify-content: center;
+        }
+
+        .page-nav a {
+            display: block;
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            color: var(--ink-light);
+            text-decoration: none;
+            padding: 1rem 1rem;
+            border-bottom: 2px solid transparent;
+            transition: color 0.2s, border-color 0.2s;
+            white-space: nowrap;
+        }
+
+        .page-nav a:hover {
+            color: var(--green-mid);
+            border-bottom-color: var(--gold);
+        }
+
+        .section {
+            padding: 5rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section + .section {
+            border-top: 1px solid var(--border);
+        }
+
+        .section-label {
+            display: block;
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--green-mid);
+            margin-bottom: 0.75rem;
+        }
+
+        .section h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            letter-spacing: 0.06em;
+            color: var(--ink);
+            margin-bottom: 1.25rem;
+        }
+
+        .section p {
+            font-size: 0.98rem;
+            color: var(--ink-light);
+            margin-bottom: 1rem;
+        }
+
+        .section-img {
+            width: 100%;
+            max-width: 800px;
+            border-radius: 10px;
+            display: block;
+            margin: 2rem 0;
+            box-shadow: 0 6px 24px rgba(10,61,43,0.12);
+        }
+
+        /* Estilização para Grids de Informação */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .info-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-top: 3px solid var(--gold);
+            border-radius: 10px;
+            padding: 1.75rem;
+        }
+
+        .info-card h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            color: var(--green-mid);
+            letter-spacing: 0.04em;
+            line-height: 1.1;
+            margin-bottom: 0.75rem;
+        }
+
+        .info-card p {
+            font-size: 0.88rem;
+            color: var(--ink-light);
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* Estilização para Listas */
+        .rules-list {
+            margin-top: 1.5rem;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .rules-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            color: var(--ink-light);
+        }
+
+        .rules-list li::before {
+            content: "⚽";
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 0.85rem;
+        }
+
+        /* Tabela Estilizada */
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(10,61,43,0.08);
+        }
+
+        .custom-table thead {
+            background: var(--green);
+            color: #fff;
+        }
+
+        .custom-table th {
+            padding: 1rem 1.25rem;
+            text-align: left;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .custom-table td {
+            padding: 1rem 1.25rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--ink);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .custom-table tr:last-child td { border-bottom: none; }
+        .custom-table tr:hover td { background: var(--off-white); }
+
+        /* Dark Section */
+        .dark-section {
+            background: var(--ink);
+            padding: 5rem 2rem;
+            color: #fff;
+        }
+
+        .dark-section .container { max-width: 900px; margin: 0 auto; }
+
+        .dark-section .section-label { color: var(--gold); }
+
+        .dark-section h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            letter-spacing: 0.06em;
+            color: #fff;
+            margin-bottom: 1.25rem;
+        }
+
+        .dark-section p {
+            font-size: 0.98rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        footer {
+            background: var(--ink);
+            color: rgba(255,255,255,0.4);
+            text-align: center;
+            padding: 2.5rem 2rem;
+            font-size: 0.78rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            letter-spacing: 0.04em;
+        }
+
+        footer strong { color: rgba(255,255,255,0.7); }
+
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.25rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-nav a {
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            transition: color 0.2s;
+        }
+
+        .footer-nav a:hover { color: var(--gold); }
+
+        @media (max-width: 640px) {
+            .info-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
-    
-    <header>
-        <h1>A Copa do Mundo: Origem, História e Evolução</h1>
-        <hr>
+
+    <div class="topbar">
+        <a href="paginaPrincipal.html" class="topbar-back">← Voltar à página inicial</a>
+        <span class="topbar-label">Tópico 01 de 05</span>
+    </div>
+
+    <header class="page-hero">
+        <span class="page-num">Tópico 01 · Copa do Mundo</span>
+        <h1>Origem, História<span>e Evolução</span></h1>
+        <p class="page-hero-sub">Como o maior torneio de futebol do mundo nasceu e se transformou ao longo de um século</p>
+        <span class="page-author">Por Leticia Silva Ribeiro</span>
     </header>
 
-    <nav>
+    <nav class="page-nav">
         <ul>
-            <li><a href="#Origem">Origem da Copa do Mundo</a></li>
-            <li><a href="#quatro">Por que a Copa acontece de quatro em quatro anos?</a></li>
-            <li><a href="#interrupção">A interrupção durante a Segunda Guerra Mundial</a></li>
-            <li><a href="#regras">Evolução das regras e da competição</a></li>
-            <li><a href="#crescimento">O crescimento da Copa do Mundo</a></li>
+            <li><a href="#origem">A Origem</a></li>
+            <li><a href="#quatro">Por que a cada 4 anos?</a></li>
+            <li><a href="#interrupcao">A Interrupção</a></li>
+            <li><a href="#regras">Evolução das Regras</a></li>
+            <li><a href="#crescimento">O Crescimento</a></li>
         </ul>
     </nav>
 
-    <br>
+    <section class="section" id="origem">
+        <span class="section-label">O Início de Tudo</span>
+        <h2>Origem da Copa do Mundo</h2>
+        <p>A ideia de criar um campeonato mundial de seleções surgiu graças ao dirigente francês Jules Rimet, presidente da FIFA entre 1921 e 1954. Naquela época, o futebol já era muito popular, porém as seleções só se enfrentavam em torneios regionais ou nos Jogos Olímpicos. Rimet acreditava que o esporte precisava de uma competição internacional própria, aberta às principais seleções do mundo.</p>
+        
+        <p>Assim, em 1930, foi realizada a primeira Copa do Mundo, sediada no Uruguai. O país foi escolhido por comemorar o centenário de sua independência e por ser o então atual campeão olímpico de futebol. Participaram apenas 13 seleções, pois muitas equipes europeias desistiram devido aos altos custos e ao longo tempo de viagem de navio até a América do Sul. O campeão da primeira edição foi o Uruguai, que venceu a Argentina por 4 a 2 na grande final.</p>
 
-    <main>
-        <section id="Origem">
-            <h2>Origem da Copa do Mundo</h2>
-            <p>A ideia de criar um campeonato mundial de seleções surgiu graças ao dirigente francês Jules Rimet, presidente da FIFA entre 1921 e 1954. Naquela época, o futebol já era muito popular, porém as seleções só se enfrentavam em torneios regionais ou nos Jogos Olímpicos. Rimet acreditava que o esporte precisava de uma competição internacional própria, aberta às principais seleções do mundo. Assim, em 1930, foi realizada a primeira Copa do Mundo, sediada no Uruguai, escolhido por comemorar o centenário de sua independência e por ser campeão olímpico de futebol. Participaram apenas 13 seleções, pois muitas equipes europeias desistiram devido aos altos custos e ao longo tempo de viagem de navio até a América do Sul. O campeão da primeira edição foi o Uruguai, que venceu a Argentina por 4 a 2 na final.</p>
-            <img src="https://s5.static.brasilescola.uol.com.br/be/2022/10/jogadores-uruguai-primeira-copa.jpg" width="550">
-        </section>
+        <img class="section-img" src="https://s5.static.brasilescola.uol.com.br/be/2022/10/jogadores-uruguai-primeira-copa.jpg" alt="Jogadores do Uruguai na primeira Copa do Mundo">
+    </section>
 
-        <br>
+    <section class="section" id="quatro">
+        <span class="section-label">Logística e Magia</span>
+        <h2>Por que a Copa acontece de quatro em quatro anos?</h2>
+        <p>A decisão de realizar o torneio a cada quadriênio, inspirada nos Jogos Olímpicos, não foi por acaso. Esse formato permanece até hoje e é considerado um dos fatores que tornam a Copa do Mundo um evento tão importante e especial no calendário global. O intervalo foi escolhido porque:</p>
 
-        <section id="quatro">
-            <h2>Por que a Copa acontece de quatro em quatro anos?</h2>
-            <p>O intervalo de quatro anos foi escolhido porque:
-            <ul>
-                <li>Dá tempo para organizar um evento de grande porte;</li>
-                <li>Permite que as seleções disputem torneios classificatórios;</li>
-                <li>Evita conflitos com campeonatos nacionais e continentais;</li>
-                <li>Torna a competição mais especial e aguardada pelos torcedores.</li>
-            </ul>
-            Esse formato permanece até hoje e é considerado um dos fatores que tornam a Copa do Mundo um evento tão importante.</p>
-            <img src="https://s2-oglobo.glbimg.com/1ZWCR0NFYv6Gy46Mb36bqfMev5k=/0x0:1921x1081/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_da025474c0c44edd99332dddb09cabe8/internal_photos/bs/2025/w/v/V8XVTASOeKlqtAwsQJSQ/header-copa-sorteio.png" width="550">
-        </section>
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>Tempo de Preparo</h3>
+                <p>Dá tempo suficiente para que o país-sede consiga organizar um evento de grande porte, construindo estádios, redes hoteleiras e infraestrutura de transporte.</p>
+            </div>
+            <div class="info-card">
+                <h3>Eliminatórias Longas</h3>
+                <p>Permite que as seleções disputem os torneios classificatórios (as famosas eliminatórias), que demandam dezenas de jogos ao redor do globo.</p>
+            </div>
+            <div class="info-card">
+                <h3>Harmonia do Calendário</h3>
+                <p>Evita conflitos diretos com os campeonatos nacionais e continentais, como a Eurocopa e a Copa América, garantindo que os jogadores estejam disponíveis.</p>
+            </div>
+            <div class="info-card">
+                <h3>Aura de Exclusividade</h3>
+                <p>A longa espera torna a competição mais especial e aguardada pelos torcedores, transformando cada edição em um evento histórico único.</p>
+            </div>
+        </div>
 
-        <br>
+        <img class="section-img" src="https://s2-oglobo.glbimg.com/1ZWCR0NFYv6Gy46Mb36bqfMev5k=/0x0:1921x1081/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_da025474c0c44edd99332dddb09cabe8/internal_photos/bs/2025/w/v/V8XVTASOeKlqtAwsQJSQ/header-copa-sorteio.png" alt="Sorteio da Copa do Mundo">
+    </section>
 
-        <section id="interrupção">
+    <section class="dark-section" id="interrupcao">
+        <div class="container">
+            <span class="section-label">O Hiato Sombrio</span>
             <h2>A interrupção durante a Segunda Guerra Mundial</h2>
-            <p>A única interrupção da história da Copa ocorreu durante a Segunda Guerra Mundial. As edições previstas para 1942 e 1946, foram canceladas devido ao conflito mundial. Durante esse período, muitos jogadores participaram da guerra, diversos países estavam devastados e não havia condições de organizar um campeonato internacional. A competição voltou apenas em 1950, novamente no Brasil.</p>
-            <img src="https://static.historiadomundo.com.br/2020/03/soldados-nazistas.jpg" width="550">
-        </section>
+            <p>A única interrupção da história da Copa ocorreu durante a Segunda Guerra Mundial. As edições previstas para os anos de 1942 e 1946 foram sumariamente canceladas devido ao conflito mundial.</p>
+            
+            <p>Durante esse período devastador, muitos jogadores participaram ativamente das frentes de batalha na guerra. Diversos países europeus e asiáticos estavam fisicamente e economicamente devastados, de modo que não havia a menor condição de organizar um campeonato internacional de entretenimento. A grandiosa competição do futebol mundial voltou a acontecer apenas no ano de 1950, sendo realizada novamente na América do Sul, desta vez com sede no Brasil.</p>
 
-        <br>
+            <img class="section-img" style="margin-top: 2rem;" src="https://static.historiadomundo.com.br/2020/03/soldados-nazistas.jpg" alt="Segunda Guerra Mundial">
+        </div>
+    </section>
 
-        <section id="regras">
-            <h2>Evolução das regras e da competição</h2>
-            <p>Ao longo das décadas, a Copa passou por diversas mudanças para acompanhar o crescimento do futebol. Entre as principais evoluções estão:
-                <ul>
-                    <li>A criação das eliminatórias continentais, que definem os classificados (1934).</li>
-                    <li>A introdução dos cartões amarelo e vermelho na Copa de 1970.</li>
-                    <li>A adoção da disputa por pênaltis para decidir jogos eliminatórios empatados (1978).</li>
-                    <li>A utilização da tecnologia da linha do gol (2014).</li>
-                    <li>A implantação do VAR (árbitro de vídeo) para reduzir erros de arbitragem (2018).</li>
-                    <li>O aumento da profissionalização da arbitragem e da preparação das seleções (a partir de 1990).</li>
-                </ul>
-            Essas mudanças tornaram a competição mais organizada, justa e emocionante.</p>
-            <img src="https://static.historiadomundo.com.br/2024/06/homens-jogando-futebol-uma-alusao-a-historia-do-esporte-mais-popular-do-mundo.jpg" width="550">
-        </section>
+    <section class="section" id="regras">
+        <span class="section-label">Modernização do Jogo</span>
+        <h2>Evolução das regras e da competição</h2>
+        <p>Ao longo das décadas, a Copa passou por diversas mudanças essenciais para acompanhar o crescimento do futebol contemporâneo. Essas mudanças não apenas ditaram o ritmo do esporte, mas tornaram a competição estruturalmente mais organizada, transparente, justa e emocionante.</p>
 
-        <br>
+        <ul class="rules-list">
+            <li>A criação das eliminatórias continentais, que definem com maior mérito esportivo os classificados (1934).</li>
+            <li>A introdução dos cartões amarelo e vermelho na Copa de 1970, revolucionando a disciplina em campo.</li>
+            <li>A adoção da disputa por pênaltis para decidir jogos eliminatórios que terminavam empatados (a partir de 1978).</li>
+            <li>A utilização da tecnologia da linha do gol, acabando com os "gols fantasmas" (2014).</li>
+            <li>A implantação do VAR (árbitro de vídeo) para revisar lances e reduzir drasticamente os erros de arbitragem (2018).</li>
+            <li>O aumento vertiginoso da profissionalização da arbitragem e dos métodos de preparação tática das seleções (a partir de 1990).</li>
+        </ul>
 
-        <section id="crescimento">
-            <h2>O crescimento da Copa do Mundo</h2>
-            <p>O torneio cresceu de forma impressionante desde sua criação.
-                <table border="1">
-                    <tr>
-                        <th>Ano</th>
-                        <th>Número de seleções</th>
-                    </tr>
-                    <tr>
-                        <td>1930</td>
-                        <td>13</td>
-                    </tr>
-                    <tr>
-                        <td>1934-1978</td>
-                        <td>16</td>
-                    </tr>
-                    <tr>
-                        <td>1982</td>
-                        <td>24</td>
-                    </tr>
-                    <tr>
-                        <td>1998-2022</td>
-                        <td>32</td>
-                    </tr>
-                    <tr>
-                        <td>2026</td>
-                        <td>48</td>
-                    </tr>
-                </table>
-                <br>
-            A edição de 2026 será a maior da história, reunindo 48 seleções, com jogos realizados em três países: Canadá, Estados Unidos e México. Essa ampliação busca aumentar a participação de diferentes continentes, promover o desenvolvimento do futebol em novos países e tornar o torneio ainda mais global.</p>
-            <img src="https://tvtnews.com.br/wp-content/uploads/2026/05/grupos_da_copa_do_mundo_2026_FIFA_2026-OK-1.jpg" width="550">
-        </section>
-    </main>
+        <img class="section-img" src="https://static.historiadomundo.com.br/2024/06/homens-jogando-futebol-uma-alusao-a-historia-do-esporte-mais-popular-do-mundo.jpg" alt="Evolução do Futebol">
+    </section>
 
-    <br>
+    <section class="section" id="crescimento">
+        <span class="section-label">A Expansão Global</span>
+        <h2>O crescimento da Copa do Mundo</h2>
+        <p>O torneio cresceu de forma impressionante e exponencial desde sua criação, acompanhando a globalização e o poder econômico do esporte.</p>
+
+        <table class="custom-table">
+            <thead>
+                <tr>
+                    <th>Período / Ano</th>
+                    <th>Número de Seleções Participantes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1930</td>
+                    <td>13 seleções</td>
+                </tr>
+                <tr>
+                    <td>1934 a 1978</td>
+                    <td>16 seleções</td>
+                </tr>
+                <tr>
+                    <td>1982 a 1994</td>
+                    <td>24 seleções</td>
+                </tr>
+                <tr>
+                    <td>1998 a 2022</td>
+                    <td>32 seleções</td>
+                </tr>
+                <tr>
+                    <td>2026</td>
+                    <td>48 seleções</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p style="margin-top: 1.5rem;">A aguardada edição de 2026 será a maior da história, reunindo incríveis 48 seleções. O evento será massivo, com jogos realizados em três países-sede simultâneos: Canadá, Estados Unidos e México. Essa ambiciosa ampliação da FIFA busca aumentar a participação direta de diferentes continentes, promover o rápido desenvolvimento do futebol em novos mercados e países e, por fim, tornar o torneio um evento ainda mais global.</p>
+
+        <img class="section-img" src="https://tvtnews.com.br/wp-content/uploads/2026/05/grupos_da_copa_do_mundo_2026_FIFA_2026-OK-1.jpg" alt="Grupos da Copa do Mundo 2026">
+    </section>
 
     <footer>
-        Feito por: Leticia Silva Ribeiro
+        <nav class="footer-nav">
+            <a href="paginaPrincipal.html">← Início</a>
+            <a href="murilo.html">02 · Ícones e Legados</a>
+            <a href="Guilherme.html">03 · Impactos Socioeconômicos</a>
+            <a href="bruna.html">04 · Tecnologia</a>
+            <a href="lorenzo.html">05 · Fenômeno Cultural</a>
+        </nav>
+        <p>
+            <strong>Origem, História e Evolução</strong>
+            &nbsp;—&nbsp; Por Leticia Silva Ribeiro · Instituto J&amp;F · Sala 1°E · 2026
+        </p>
     </footer>
 
-    <h2>Página Inicial: </h2>
-     <nav>
-        <ul>
-           
-            <li><a href="paginaPrincipal.html"> Início</a></li>
-           
-            
-           
-        
-        </ul>
-    </nav>
 </body>
 </html>

@@ -1,157 +1,473 @@
-
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Tecnologia e Ciência no Futebol</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tecnologia e Ciência no Futebol — A Copa do Mundo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --green:      #0A3D2B;
+            --green-mid:  #1A6644;
+            --gold:       #D4A843;
+            --off-white:  #F8F5EE;
+            --ink:        #1A1A2E;
+            --ink-light:  #4A4A6A;
+            --card-bg:    #ffffff;
+            --border:     #e0ddd6;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--off-white);
+            color: var(--ink);
+            line-height: 1.7;
+        }
+
+        /* Topbar */
+        .topbar {
+            background: var(--green);
+            padding: 0.75rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .topbar-back {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: color 0.2s;
+        }
+
+        .topbar-back:hover { color: #fff; }
+
+        .topbar-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        /* Hero */
+        .page-hero {
+            background: var(--green);
+            padding: 3.5rem 2rem 4rem;
+            text-align: center;
+            border-bottom: 3px solid var(--gold);
+        }
+
+        .page-num {
+            display: inline-block;
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--gold);
+            border: 1px solid rgba(212,168,67,0.4);
+            padding: 0.35rem 1rem;
+            border-radius: 100px;
+            margin-bottom: 1.5rem;
+        }
+
+        .page-hero h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.5rem, 7vw, 5.5rem);
+            line-height: 0.95;
+            color: #fff;
+            letter-spacing: 0.05em;
+        }
+
+        .page-hero h1 span { color: var(--gold); display: block; }
+
+        .page-hero-sub {
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.6);
+            font-weight: 300;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .page-author {
+            display: inline-block;
+            margin-top: 1.5rem;
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.5);
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: 0.3rem 1rem;
+            border-radius: 4px;
+            letter-spacing: 0.04em;
+        }
+
+        /* Nav */
+        .page-nav {
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .page-nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            justify-content: center;
+        }
+
+        .page-nav a {
+            display: block;
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            color: var(--ink-light);
+            text-decoration: none;
+            padding: 1rem 1rem;
+            border-bottom: 2px solid transparent;
+            transition: color 0.2s, border-color 0.2s;
+            white-space: nowrap;
+        }
+
+        .page-nav a:hover {
+            color: var(--green-mid);
+            border-bottom-color: var(--gold);
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section + .section {
+            border-top: 1px solid var(--border);
+        }
+
+        .section-label {
+            display: block;
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--green-mid);
+            margin-bottom: 0.75rem;
+        }
+
+        .section h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            letter-spacing: 0.06em;
+            color: var(--ink);
+            margin-bottom: 1.25rem;
+        }
+
+        .section p {
+            font-size: 0.98rem;
+            color: var(--ink-light);
+            margin-bottom: 1rem;
+        }
+
+        .section-img {
+            width: 100%;
+            max-width: 800px;
+            border-radius: 10px;
+            display: block;
+            margin: 2rem 0;
+            box-shadow: 0 6px 24px rgba(10,61,43,0.12);
+        }
+
+        /* Grids para Inovações */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .tech-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-top: 3px solid var(--gold);
+            border-radius: 10px;
+            padding: 1.75rem;
+        }
+
+        .tech-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .tech-card h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.6rem;
+            color: var(--green-mid);
+            letter-spacing: 0.04em;
+            line-height: 1.1;
+            margin-bottom: 0.75rem;
+        }
+
+        .tech-card p {
+            font-size: 0.88rem;
+            color: var(--ink-light);
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* Dark Section */
+        .dark-section {
+            background: var(--ink);
+            padding: 5rem 2rem;
+            color: #fff;
+        }
+
+        .dark-section .container { max-width: 900px; margin: 0 auto; }
+
+        .dark-section .section-label { color: var(--gold); }
+
+        .dark-section h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            letter-spacing: 0.06em;
+            color: #fff;
+            margin-bottom: 1.25rem;
+        }
+
+        .dark-section p {
+            font-size: 0.98rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        /* Custom Table (Linha do Tempo) */
+        .timeline-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(10,61,43,0.08);
+        }
+
+        .timeline-table thead {
+            background: var(--green);
+            color: #fff;
+        }
+
+        .timeline-table th {
+            padding: 1.25rem;
+            text-align: left;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .timeline-table td {
+            padding: 1.25rem;
+            font-size: 0.92rem;
+            color: var(--ink-light);
+            border-bottom: 1px solid var(--border);
+            vertical-align: middle;
+            line-height: 1.6;
+        }
+
+        .timeline-table tr:last-child td { border-bottom: none; }
+        .timeline-table tr:hover td { background: var(--off-white); }
+        .year-badge {
+            background: var(--gold);
+            color: var(--green);
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: inline-block;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            color: rgba(255,255,255,0.4);
+            text-align: center;
+            padding: 2.5rem 2rem;
+            font-size: 0.78rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            letter-spacing: 0.04em;
+        }
+
+        footer strong { color: rgba(255,255,255,0.7); }
+
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.25rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-nav a {
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            transition: color 0.2s;
+        }
+
+        .footer-nav a:hover { color: var(--gold); }
+
+        @media (max-width: 768px) {
+            .tech-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
 
-    <header>
-        <h1>Tecnologia e Ciência no Futebol: O Lado Inovador da Copa do Mundo</h1>
-        <hr>
+    <div class="topbar">
+        <a href="paginaPrincipal.html" class="topbar-back">← Voltar à página inicial</a>
+        <span class="topbar-label">Tópico 04 de 05</span>
+    </div>
+
+    <header class="page-hero">
+        <span class="page-num">Tópico 04 · Copa do Mundo</span>
+        <h1>Tecnologia e Ciência<span>no Futebol</span></h1>
+        <p class="page-hero-sub">Do VAR aos tecidos inteligentes: o lado mais inovador do maior evento esportivo do planeta</p>
+        <span class="page-author">Por Bruna de Castro Furlaneto</span>
     </header>
 
-    <nav>
+    <nav class="page-nav">
         <ul>
-            <li><a href="#bolas">A Evolução das Bolas</a></li>
-            <li><a href="#camisas">Tecidos Inteligentes nas Camisas</a></li>
-            <li><a href="#impedimento">Tecnologia de Impedimento Semiautomático</a></li>
-            <li><a href="#ciencia">Ciência e Performance Física</a></li>
-            <li><a href="#curiosidades">Curiosidades Tecnológicas</a></li>
+            <li><a href="#equipamentos">Equipamentos e Materiais</a></li>
+            <li><a href="#arbitragem">Arbitragem Semiautomática</a></li>
+            <li><a href="#dados">Ciência e Dados</a></li>
+            <li><a href="#estadios">Sustentabilidade e Estádios</a></li>
             <li><a href="#linha">Linha do Tempo</a></li>
-            <li><a href="#futuro">O Futuro da Tecnologia</a></li>
-            <li><a href="#estadios">Tecnologia nos Estádios</a></li>
         </ul>
     </nav>
 
-    <br>
-
-    <main>
-
-        <section id="bolas">
-            <h2>A Evolução das Bolas</h2>
-
-            <p> A evolução das bolas de futebol é resultado de décadas de pesquisas e testes realizados por fabricantes e especialistas. Atualmente, elas são projetadas para oferecer maior precisão, velocidade e controle durante as partidas. Os materiais modernos também aumentam a durabilidade e garantem que o desempenho da bola seja mantido mesmo após longos períodos de uso. Essas melhorias contribuíram para tornar o futebol mais dinâmico e competitivo. Além disso, o design das bolas é cuidadosamente estudado para melhorar sua aerodinâmica, permitindo trajetórias mais estáveis e previsíveis durante chutes e passes
-            </p>
-
-            <img src="img/evolução_bolas_copa.png" width="300" alt="Evolução das bolas de futebol">
-        </section>
-
-        <br>
-
-        <section id="camisas">
-            <h2>Tecidos Inteligentes nas Camisas</h2>
-
-            <p>
-                Os uniformes modernos são desenvolvidos com tecnologias que ajudam os atletas a manterem o conforto durante toda a partida. Os tecidos permitem melhor circulação de ar, reduzem o acúmulo de suor e oferecem maior flexibilidade para os movimentos. Além disso, muitas empresas utilizam materiais reciclados na fabricação das camisas, demonstrando a preocupação com a sustentabilidade e a preservação do meio ambiente. Esses avanços permitem que os jogadores mantenham um alto nível de desempenho mesmo em condições climáticas adversas.
-            </p>
-
-            <img src="img/camisa_antiga_copa.webp" width="300" alt="Camisa antiga de futebol">
-            <img src="img/camisa_atual_copa.jpg" width="250" alt="Camisa tecnológica de futebol">
-        </section>
-
-        <br>
-
-        <section id="impedimento">
-            <h2>Tecnologia de Impedimento Semiautomático</h2>
-
-            <p>
-                Essa tecnologia representa um dos maiores avanços recentes da arbitragem esportiva. Com o auxílio de câmeras especiais e inteligência artificial, o sistema consegue analisar a posição dos jogadores em poucos segundos. Isso reduz a possibilidade de erros humanos e torna as decisões mais transparentes. A inovação também ajuda a manter o ritmo do jogo, evitando interrupções prolongadas para revisão dos lances. Dessa forma, a tecnologia contribui para aumentar a justiça esportiva e a confiança dos torcedores nas decisões tomadas durante as partidas.
-            </p>
-
-            <img src="img/camera_copa.avif" width="350" alt="Tecnologia de impedimento semiautomático">
-        </section>
-
-        <br>
-
-        <section id="ciencia">
-            <h2>Ciência e Performance Física</h2>
-
-            <p>
-              A preparação física dos jogadores modernos depende fortemente da ciência. Profissionais utilizam equipamentos de monitoramento para acompanhar diversos indicadores do corpo dos atletas antes, durante e após os treinamentos. Essas informações ajudam a planejar exercícios específicos para cada jogador, melhorando seu desempenho e reduzindo o risco de lesões. A combinação entre tecnologia e conhecimento científico tem sido fundamental para elevar o nível do futebol profissional. Além disso, estudos sobre alimentação, hidratação e recuperação muscular auxiliam os atletas a alcançarem melhores resultados.
-            </p>
-
-            
-        </section>
-
-        <br>
-
-        <section id="curiosidades">
-            <h2>Curiosidades Tecnológicas</h2>
-
-            <p>
-                A Copa do Mundo frequentemente serve como laboratório para novas tecnologias esportivas. Muitas ferramentas testadas durante o torneio acabam sendo adotadas em campeonatos nacionais e internacionais. Além disso, as transmissões televisivas utilizam recursos avançados, como câmeras de alta definição, replays em câmera lenta e gráficos em tempo real, tornando a experiência dos torcedores ainda mais completa e envolvente. Essas inovações ajudam milhões de pessoas ao redor do mundo a acompanharem os jogos com mais detalhes e qualidade.
-            </p>
-
-            <img src="img/bola2022.jpg" width="350" alt="Bola Al Rihla">
-        </section>
-
-        <br>
-
-        <section id="linha">
-            <h2>Linha do Tempo da Tecnologia na Copa</h2>
-
-            <p>
-                1930 - Bolas de couro.
-                <br>
-                1970 - Primeira bola Adidas Telstar.
-                <br>
-                2014 - Introdução da Tecnologia da Linha do Gol.
-                <br>
-                2018 - Uso do VAR.
-                <br>
-                2022 - Impedimento semiautomático.
-            </p>
-            
-            <img src="img/linha_do_tempo.png" width="350" alt="Linha do tempo da tecnologia na Copa">
-        </section>
-
-        <br>
-
-        <section id="futuro">
-            <h2>O Futuro da Tecnologia no Futebol</h2>
-
-            <p>
-               O futebol continuará evoluindo com o avanço da tecnologia. Novos sistemas de análise de desempenho, inteligência artificial e dispositivos inteligentes poderão fornecer informações ainda mais detalhadas sobre cada partida. Essas ferramentas poderão auxiliar treinadores, árbitros e jogadores na tomada de decisões, tornando o esporte cada vez mais moderno. Ao mesmo tempo, será importante equilibrar inovação e tradição para preservar a essência do futebol. Especialistas acreditam que os próximos anos trarão mudanças significativas na forma como o esporte é treinado, administrado e assistido pelos torcedores.
-            </p>
-
-            <img src="img/tecnologia_futebol.png" width="350" alt="Tecnologia do futuro no futebol">
-        </section>
-
-        <br>
-
-        <section id="estadios">
-            <h2>Tecnologia nos Estádios</h2>
-
-            <p>
-                Os estádios atuais são verdadeiros centros tecnológicos. Além dos telões gigantes e da conexão de internet para os torcedores, muitos contam com sistemas inteligentes de iluminação, controle de acesso e monitoramento por câmeras. Algumas arenas também utilizam soluções sustentáveis, como energia solar e reaproveitamento de água. Essas tecnologias melhoram a experiência do público e tornam os eventos mais seguros e eficientes. Com isso, os estádios se tornam ambientes mais modernos, confortáveis e preparados para receber grandes competições internacionais.
-            </p>
-
-            <img src="img/estadio_moderno.webp" width="350" alt="Tecnologia nos estádios">
-        </section>
-
-    </main>
-
-    <br>
-
-    <h2>Página Inicial: </h2>
-     <nav>
-        <ul>
-           
-            <li><a href="paginaPrincipal.html"> Início</a></li>
-           
-            
-           
+    <section class="section" id="equipamentos">
+        <span class="section-label">Engenharia em Campo</span>
+        <h2>Equipamentos, Bolas e Tecidos</h2>
+        <p>A evolução das bolas de futebol é resultado de décadas de pesquisas e testes rigorosos realizados por fabricantes e especialistas no assunto. Atualmente, elas são meticulosamente projetadas para oferecer a maior precisão, velocidade e controle possíveis durante as partidas. Os materiais modernos também aumentam exponencialmente a durabilidade e garantem que o desempenho aerodinâmico da bola seja mantido impecável mesmo após longos períodos de uso.</p>
         
-        </ul>
-    </nav>
+        <p>Essas impressionantes melhorias contribuíram ativamente para tornar o futebol muito mais dinâmico e competitivo. Além disso, o design físico das bolas é cuidadosamente estudado e testado em túneis de vento para melhorar sua aerodinâmica, permitindo trajetórias muito mais estáveis e previsíveis durante chutes e passes de longa distância.</p>
 
+        <div class="tech-grid">
+            <div class="tech-card">
+                <span class="tech-icon">👕</span>
+                <h3>Tecidos Inteligentes e Sustentáveis</h3>
+                <p>Os uniformes modernos são desenvolvidos com altas tecnologias que ajudam os atletas a manterem o máximo conforto durante toda a partida. Os tecidos permitem uma melhor circulação de ar, reduzem o acúmulo excessivo de suor e oferecem muito maior flexibilidade para os movimentos do atleta.</p>
+            </div>
+            <div class="tech-card">
+                <span class="tech-icon">♻️</span>
+                <h3>Foco no Meio Ambiente</h3>
+                <p>Muitas empresas hoje utilizam diversos materiais reciclados na fabricação das camisas oficiais, demonstrando uma forte preocupação com a sustentabilidade e a preservação do meio ambiente. É o futebol caminhando em direção ao <em>Consumo e Produção Responsáveis (ODS 12)</em>, transformando plásticos retirados dos oceanos em produtos de alta performance. Esses avanços fantásticos permitem que os jogadores mantenham um alto nível de desempenho físico mesmo em condições climáticas severamente adversas.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="dark-section" id="arbitragem">
+        <div class="container">
+            <span class="section-label">O Futuro da Arbitragem</span>
+            <h2>Tecnologia de Impedimento Semiautomático</h2>
+            <p>Essa tecnologia representa um dos maiores e mais impactantes avanços recentes da arbitragem esportiva no mundo. Com o auxílio essencial de múltiplas câmeras especiais instaladas nos estádios e complexos algoritmos de inteligência artificial, o sistema inovador consegue analisar a posição exata de todos os jogadores em poucos segundos.</p>
+
+            <p>Isso reduz enormemente a possibilidade de erros humanos fatais e torna as decisões dos árbitros muito mais transparentes para todos. A inovação também ajuda a manter o ritmo frenético do jogo, evitando aquelas interrupções prolongadas e exaustivas para a revisão detalhada dos lances. Dessa forma, a tecnologia contribui imensamente para aumentar a justiça esportiva dentro das quatro linhas e fortalecer a confiança dos torcedores ansiosos nas decisões tomadas durante as partidas.</p>
+
+            <img class="section-img" style="margin-top: 2rem;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTujcP3zL5z-rg3tPFD2cuZcVfufKhmymoI58HyfkmOxA&s=10" alt="Impedimento Semiautomático">
+        </div>
+    </section>
+
+    <section class="section" id="dados">
+        <span class="section-label">A Força dos Números</span>
+        <h2>Ciência, Dados e Performance Física</h2>
+        <p>A preparação física intensiva dos jogadores modernos depende fortemente da ciência e da análise minuciosa de dados. Profissionais técnicos utilizam modernos equipamentos de monitoramento integrados (como GPS em coletes) para acompanhar diversos e cruciais indicadores de performance do corpo dos atletas antes, durante e após os treinamentos.</p>
+        
+        <p>Com o auxílio de potentes bancos de dados que processam essa volumosa carga de métricas, essas valiosas informações ajudam a planejar exercícios altamente específicos para as necessidades de cada jogador, melhorando incrivelmente seu desempenho e reduzindo o perigoso risco de lesões musculares. A combinação perfeita entre tecnologia de ponta e profundo conhecimento científico tem sido absolutamente fundamental para elevar o nível geral do futebol profissional.</p>
+
+        <p>Além disso, estudos avançados sobre alimentação individualizada, hidratação correta e recuperação muscular otimizada auxiliam diretamente os atletas de elite a alcançarem melhores resultados em campo. O futebol continuará inexoravelmente evoluindo com o avanço da tecnologia e da ciência.</p>
+    </section>
+
+    <section class="section" style="padding-top: 0;" id="estadios">
+        <span class="section-label">A Experiência e o Ambiente</span>
+        <h2>Tecnologia nos Estádios e o Futuro</h2>
+        <p>Os estádios atuais são considerados verdadeiros e imponentes centros tecnológicos. Além dos telões gigantes de alta resolução e da essencial conexão veloz de internet para todos os torcedores, muitos contam com sistemas computadorizados inteligentes de iluminação, rigoroso controle de acesso e amplo monitoramento integrado por câmeras.</p>
+
+        <p>É importante destacar que algumas modernas arenas também já utilizam incríveis soluções sustentáveis, como a captação de energia solar e o reaproveitamento inteligente de água da chuva. Essas soluções não só atendem às normas regulamentadoras mais rígidas para garantir o funcionamento do complexo, como também se alinham globalmente às metas do ODS 12 para minimizar os impactos ambientais industriais. Todas essas tecnologias integradas melhoram de forma incomparável a experiência do público e tornam os grandes eventos esportivos muito mais seguros e eficientes.</p>
+    </section>
+
+    <section class="section" style="background: var(--card-bg); border-top: 1px solid var(--border);" id="linha">
+        <div class="container" style="max-width: 900px; margin: 0 auto;">
+            <span class="section-label">Retrospecto Histórico</span>
+            <h2>Linha do Tempo da Inovação na Copa</h2>
+            
+            <table class="timeline-table">
+                <thead>
+                    <tr>
+                        <th style="width: 15%;">Ano</th>
+                        <th>O Marco Tecnológico</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="year-badge">1930</span></td>
+                        <td>Uso rústico de bolas de couro cru costuradas à mão.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="year-badge">1970</span></td>
+                        <td>Lançamento da icônica e inovadora primeira bola Adidas Telstar, facilitando a visualização nas TVs em preto e branco.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="year-badge">2014</span></td>
+                        <td>Introdução revolucionária da Tecnologia da Linha do Gol no Brasil, acabando com "gols fantasmas".</td>
+                    </tr>
+                    <tr>
+                        <td><span class="year-badge">2018</span></td>
+                        <td>Implementação e uso do VAR (Árbitro de Vídeo), alterando permanentemente a dinâmica de checagem do futebol.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="year-badge">2022</span></td>
+                        <td>Inauguração do complexo sistema de Impedimento semiautomático com rastreamento via IA e sensores no Catar.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
 
     <footer>
-        Feito por: Bruna de Castro Furlaneto
+        <nav class="footer-nav">
+            <a href="paginaPrincipal.html">← Início</a>
+            <a href="leticia.html">01 · Origem e História</a>
+            <a href="murilo.html">02 · Ícones e Legados</a>
+            <a href="Guilherme.html">03 · Impactos Socioeconômicos</a>
+            <a href="lorenzo.html">05 · Fenômeno Cultural</a>
+        </nav>
+        <p>
+            <strong>Tecnologia e Ciência no Futebol</strong>
+            &nbsp;—&nbsp; Por Bruna de Castro Furlaneto · Instituto J&amp;F · Sala 1°E · 2026
+        </p>
     </footer>
 
 </body>
 </html>
-
