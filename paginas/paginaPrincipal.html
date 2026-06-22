@@ -1,58 +1,468 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Copa do Mundo</title>
+    <title>A Copa do Mundo — Trabalho de SOP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --green:      #0A3D2B;
+            --green-mid:  #1A6644;
+            --gold:       #D4A843;
+            --off-white:  #F8F5EE;
+            --ink:        #1A1A2E;
+            --ink-light:  #4A4A6A;
+            --card-bg:    #ffffff;
+            --border:     #e0ddd6;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--off-white);
+            color: var(--ink);
+            line-height: 1.7;
+        }
+
+
+        .hero {
+            background: var(--green);
+            padding: 4rem 2rem 5rem;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            border: 1px solid rgba(212,168,67,0.4);
+            padding: 0.4rem 1.2rem;
+            border-radius: 100px;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(4rem, 13vw, 9rem);
+            line-height: 0.93;
+            color: #fff;
+            letter-spacing: 0.04em;
+        }
+
+        .hero h1 span { color: var(--gold); display: block; }
+
+        .hero-divider {
+            width: 60px;
+            height: 2px;
+            background: var(--gold);
+            margin: 2rem auto;
+        }
+
+        .hero-meta {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+            font-weight: 300;
+            margin-bottom: 0.3rem;
+        }
+
+        .hero-meta strong { color: rgba(255,255,255,0.9); font-weight: 500; }
+
+        .hero-members-label {
+            display: block;
+            font-size: 0.68rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero-members {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 0.75rem;
+        }
+
+        .hero-member {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.55);
+            padding: 0.25rem 0.75rem;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 4px;
+        }
+
+
+        .intro {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .section-label {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--green-mid);
+            margin-bottom: 0.75rem;
+        }
+
+        .intro h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            letter-spacing: 0.05em;
+            color: var(--ink);
+            margin-bottom: 1.25rem;
+        }
+
+        .intro p {
+            font-size: 1rem;
+            color: var(--ink-light);
+            margin-bottom: 1rem;
+        }
+
+        .topic-list {
+            margin-top: 1.75rem;
+            border-left: 2px solid var(--gold);
+            padding-left: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+        }
+
+        .topic-list-item {
+            font-size: 0.92rem;
+            color: var(--ink-light);
+        }
+
+        .topic-list-item strong { color: var(--green-mid); margin-right: 0.35rem; }
+
+   
+        .what {
+            background: var(--green);
+            padding: 5rem 2rem;
+        }
+
+        .what-inner {
+            max-width: 1060px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .what-text .section-label { color: var(--gold); }
+
+        .what-text h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.2rem, 4vw, 3.5rem);
+            letter-spacing: 0.05em;
+            color: #fff;
+            margin-bottom: 1.25rem;
+        }
+
+        .what-text p {
+            font-size: 0.97rem;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.8;
+            margin-bottom: 0.9rem;
+        }
+
+        .what-img {
+            width: 100%;
+            border-radius: 10px;
+            display: block;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+        }
+
+        .what-stat {
+            display: inline-block;
+            margin-top: 1.25rem;
+            background: var(--gold);
+            color: var(--green);
+            padding: 0.9rem 1.4rem;
+            border-radius: 8px;
+        }
+
+        .what-stat strong {
+            display: block;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            letter-spacing: 0.04em;
+            line-height: 1;
+        }
+
+        .what-stat span {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 600;
+        }
+
+        .topics {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 5rem 2rem 7rem;
+        }
+
+        .topics-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .topics-header h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.2rem, 4vw, 3.5rem);
+            letter-spacing: 0.07em;
+            color: var(--ink);
+        }
+
+        .topics-header p {
+            color: var(--ink-light);
+            font-size: 0.93rem;
+            margin-top: 0.5rem;
+        }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .topic-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-top: 3px solid var(--gold);
+            border-radius: 10px;
+            padding: 1.75rem;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .topic-card:hover {
+            box-shadow: 0 6px 24px rgba(10,61,43,0.12);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-icon { font-size: 1.6rem; }
+
+        .card-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            color: #ece9e1;
+            line-height: 1;
+        }
+
+        .card-title {
+            font-weight: 600;
+            font-size: 0.98rem;
+            color: var(--ink);
+            line-height: 1.35;
+        }
+
+        .card-author {
+            font-size: 0.72rem;
+            color: var(--green-mid);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 500;
+        }
+
+        .card-desc {
+            font-size: 0.87rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+            flex: 1;
+        }
+
+        .card-link {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--green-mid);
+            border-top: 1px solid var(--border);
+            padding-top: 0.75rem;
+            margin-top: 0.25rem;
+        }
+
+        footer {
+            background: var(--ink);
+            color: rgba(255,255,255,0.4);
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.78rem;
+            letter-spacing: 0.04em;
+        }
+
+        footer strong { color: rgba(255,255,255,0.7); }
+
+        @media (max-width: 700px) {
+            .what-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+        }
+    </style>
 </head>
 <body>
-    <h1>A COPA DO MUNDO</h1>
-    <hr>
-    <h3>22/06/2026</h3>
-    <h3>Instituto J&F</h3>
-    <h3>Sala: 1°E</h3>
-    <h3>Integrantes:
-        <ol>
-            <li>Bruna de Castro Furlaneto</li>
-            <li>Guilherme de Oliveira Rocha</li>
-            <li>Leticia Silva Ribeiro</li>
-            <li>Lorenzo Bianchini de Andrade</li>
-            <li>Murilo Gonçalves Paiva</li>
-        </ol>
-    </h3>
-    <hr>
-    <p>
-        O seguinte trabalho foi elaborado para entendermos mais sobre a Copa do Mundo de Futebol e sua própria importância mundialmente. Também está separado em mais 5 tópicos:
-        <ol>
-            <li>Origem, História e Evolução</li>
-            <li>Grandes Ícones e Legados</li>
-            <li>Impactos Socioeconômicos e Infraestrutura</li>
-            <li>Tecnologia e Ciência no Futebol</li>
-            <li>A Copa como Fenômeno Cultural</li>
-        </ol>
-    </p>
 
-    <br>
+    <section class="hero">
+        <span class="hero-badge">Trabalho Escolar &nbsp;·&nbsp; Instituto J&amp;F &nbsp;·&nbsp; 1°E</span>
 
-    <h2>O que é a Copa do Mundo?:</h2>
-    <hr>
-    <p>
-        A Copa do Mundo da FIFA é o maior evento esportivo de caráter global, consolidando-se como um fenômeno que transcende as quatro linhas do campo e mobiliza bilhões de pessoas a cada quatro anos. Idealizado como uma celebração da união entre nações através do futebol, o torneio funciona como um ponto de convergência onde a excelência atlética se encontra com a diversidade cultural, econômica e política do planeta. Mais do que uma competição para decidir o melhor time do mundo, a Copa opera como uma vitrine para a inovação tecnológica, um catalisador de infraestrutura para os países-sede e, sobretudo, como um momento de suspensão social onde as fronteiras geográficas se tornam menos rígidas, permitindo que a paixão compartilhada pelo esporte dite o ritmo de uma narrativa coletiva escrita por torcedores, jogadores e nações inteiras.
-    </p>
+        <h1>A Copa do<span>Mundo</span></h1>
 
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhV8xe9gKgAHseDAcZmGnyHlKc49kfDfGEkGRXJkVESA&s=10" width="550">
+        <div class="hero-divider"></div>
 
-    <br>
-    <p>Agora que sabemos o que é a Copa do Mundo, siga aprendendo a seguir:</p>
+        <p class="hero-meta"><strong>22 de junho de 2026</strong></p>
+        <p class="hero-meta">Instituto J&amp;F &nbsp;·&nbsp; Sala 1°E</p>
 
-    <!-- links para cada página -->
-    <ol>
-        <li><a href="leticia.html">Origem, História e Evolução</a></li>
-        <li><a href="murilo.html">Grandes Ícones e Legados </a></li>
-        <li><a href="Guilherme.html">Impactos Socioeconômicos e Infraestrutura</a></li>
-        <li><a href="bruna.html">Tecnologia e Ciência no Futebol</a></li>
-        <li><a href="lorenzo.html">A Copa do Mundo: Um Fenômeno Cultural Global</a></li>
-    </ol>
+        <span class="hero-members-label">Integrantes</span>
+        <div class="hero-members">
+            <span class="hero-member">Bruna de Castro Furlaneto</span>
+            <span class="hero-member">Guilherme de Oliveira Rocha</span>
+            <span class="hero-member">Leticia Silva Ribeiro</span>
+            <span class="hero-member">Lorenzo Bianchini de Andrade</span>
+            <span class="hero-member">Murilo Gonçalves Paiva</span>
+        </div>
+    </section>
+
+
+    <section class="intro">
+        <span class="section-label">Apresentação</span>
+        <h2>SOBRE O TRABALHO</h2>
+        <p>
+            O seguinte trabalho foi elaborado para entendermos mais sobre a Copa do Mundo de Futebol e a sua importância em escala global. Dividido em cinco tópicos, o projeto explora desde as raízes históricas do torneio até o seu papel como fenômeno cultural e tecnológico.
+        </p>
+        <p>
+            Cada seção foi desenvolvida por um integrante da equipe, reunindo pesquisa, análise e curiosidades sobre um dos maiores espetáculos esportivos da humanidade.
+        </p>
+        <div class="topic-list">
+            <div class="topic-list-item"><strong>01.</strong> Origem, História e Evolução</div>
+            <div class="topic-list-item"><strong>02.</strong> Grandes Ícones e Legados</div>
+            <div class="topic-list-item"><strong>03.</strong> Impactos Socioeconômicos e Infraestrutura</div>
+            <div class="topic-list-item"><strong>04.</strong> Tecnologia e Ciência no Futebol</div>
+            <div class="topic-list-item"><strong>05.</strong> A Copa como Fenômeno Cultural Global</div>
+        </div>
+    </section>
+
+
+    <section class="what">
+        <div class="what-inner">
+
+            <div class="what-text">
+                <span class="section-label">O que é</span>
+                <h2>A Copa do Mundo da FIFA</h2>
+                <p>
+                    A Copa do Mundo da FIFA é o maior evento esportivo de caráter global, consolidando-se como um fenômeno que transcende as quatro linhas do campo e mobiliza bilhões de pessoas a cada quatro anos.
+                </p>
+                <p>
+                    Mais do que decidir o melhor time do mundo, a Copa opera como uma vitrine para a inovação tecnológica, um catalisador de infraestrutura para os países-sede e um momento onde a paixão compartilhada pelo futebol une nações inteiras.
+                </p>
+            </div>
+
+            <div>
+                <img
+                    class="what-img"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhV8xe9gKgAHseDAcZmGnyHlKc49kfDfGEkGRXJkVESA&s=10"
+                    alt="Troféu da Copa do Mundo FIFA"
+                >
+                <div class="what-stat">
+                    <strong>5B+</strong>
+                    <span>espectadores na Copa 2022</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="topics">
+        <div class="topics-header">
+            <span class="section-label" style="display:block">Tópicos do Trabalho</span>
+            <h2>EXPLORE OS CAPÍTULOS</h2>
+            <p>Clique em um tópico para ver o conteúdo desenvolvido por cada integrante.</p>
+        </div>
+
+        <div class="topics-grid">
+
+            <a href="leticia.html" class="topic-card">
+                <div class="card-header">
+                    <span class="card-icon">📜</span>
+                    <span class="card-num">01</span>
+                </div>
+                <p class="card-title">Origem, História e Evolução</p>
+                <p class="card-author">Leticia Silva Ribeiro</p>
+                <p class="card-desc">Das primeiras edições em 1930 à era moderna: como a Copa se transformou ao longo de quase um século de futebol.</p>
+                <span class="card-link">Ler capítulo →</span>
+            </a>
+
+            <a href="murilo.html" class="topic-card">
+                <div class="card-header">
+                    <span class="card-icon">⭐</span>
+                    <span class="card-num">02</span>
+                </div>
+                <p class="card-title">Grandes Ícones e Legados</p>
+                <p class="card-author">Murilo Gonçalves Paiva</p>
+                <p class="card-desc">Pelé, Maradona, Ronaldo, Messi: os jogadores que definiram gerações e deixaram marcas eternas no torneio.</p>
+                <span class="card-link">Ler capítulo →</span>
+            </a>
+
+            <a href="Guilherme.html" class="topic-card">
+                <div class="card-header">
+                    <span class="card-icon">🏙️</span>
+                    <span class="card-num">03</span>
+                </div>
+                <p class="card-title">Impactos Socioeconômicos e Infraestrutura</p>
+                <p class="card-author">Guilherme de Oliveira Rocha</p>
+                <p class="card-desc">Como sediar a Copa transforma cidades, movimenta economias e gera impactos duradouros nas nações anfitriãs.</p>
+                <span class="card-link">Ler capítulo →</span>
+            </a>
+
+            <a href="bruna.html" class="topic-card">
+                <div class="card-header">
+                    <span class="card-icon">🔬</span>
+                    <span class="card-num">04</span>
+                </div>
+                <p class="card-title">Tecnologia e Ciência no Futebol</p>
+                <p class="card-author">Bruna de Castro Furlaneto</p>
+                <p class="card-desc">Do VAR ao gol de tecnologia: as inovações que revolucionaram o esporte mais popular do planeta.</p>
+                <span class="card-link">Ler capítulo →</span>
+            </a>
+
+            <a href="lorenzo.html" class="topic-card">
+                <div class="card-header">
+                    <span class="card-icon">🌍</span>
+                    <span class="card-num">05</span>
+                </div>
+                <p class="card-title">A Copa como Fenômeno Cultural Global</p>
+                <p class="card-author">Lorenzo Bianchini de Andrade</p>
+                <p class="card-desc">Músicas, mascotes e identidade: como a Copa moldou e continua a moldar a cultura popular ao redor do globo.</p>
+                <span class="card-link">Ler capítulo →</span>
+            </a>
+
+        </div>
+    </section>
+
+
+    <footer>
+        <p><strong>A Copa do Mundo</strong> &nbsp;—&nbsp; Trabalho de SOP · Instituto J&F · Sala 1°E · 2026</p>
+    </footer>
 
 </body>
 </html>
