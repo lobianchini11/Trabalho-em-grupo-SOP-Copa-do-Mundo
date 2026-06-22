@@ -9,8 +9,10 @@
 - Murilo Gonçalves Paiva
 
 ## Sobre o projeto:
+### Copa do Mundo FIFA
 
-Este projeto foi desenvolvido para aprender Git e GitHub através da criação de um site em equipe.
+Este site apresenta uma visão geral sobre a Copa do Mundo FIFA, abordando sua história e evolução desde a criação do torneio até os dias atuais. Também explora grandes jogadores e seleções que marcaram época, os impactos econômicos e sociais causados pelo evento, os avanços tecnológicos aplicados ao futebol e a importância da Copa como um fenômeno cultural que conecta pessoas e países ao redor do mundo.
+
 
 ## Páginas:
 
